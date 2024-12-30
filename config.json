@@ -1,0 +1,40 @@
+{
+    "arangodb_endpoint": "http://localhost:8529/",
+    "username": "root",
+    "password": "abc",
+    "queries": [
+        {
+            "name": "Get Users",
+            "description": "Retrieve all users with age filter",
+            "query": "FOR u IN users FILTER u.age >= @minAge RETURN u",
+            "parameters": [
+                {
+                    "name": "minAge",
+                    "parameter_type": "number"
+                }
+            ]
+        },
+        {
+            "name": "Search Products",
+            "description": "Search products by category and minimum price",
+            "query": "FOR p IN products FILTER p.category == @category && p.price >= @minPrice RETURN p",
+            "parameters": [
+                {
+                    "name": "category",
+                    "parameter_type": "string"
+                },
+                {
+                    "name": "minPrice",
+                    "parameter_type": "number"
+                }
+            ]
+        },
+        {
+            "name": "Get user graph",
+            "description": "Retrieve user graph",
+            "query": "LET edges = (FOR e IN follows RETURN e) LET vertices = (FOR v IN users FILTER SUBSTRING(v.name, 0, 4) != 'Honk' RETURN v) FOR x IN APPEND(vertices, edges) RETURN x",
+            "parameters": []
+        }
+    ]
+}
+

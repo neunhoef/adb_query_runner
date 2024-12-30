@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ArangoDB Query Interface</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <h1>Available Queries</h1>
+    <div class="query-list">
+        {% for query in queries %}
+        <div class="query-item">
+            <h2>{{ query.name }}</h2>
+            <p>{{ query.description }}</p>
+            <a href="/query/{{ loop.index0 }}" class="button">Execute Query</a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
+

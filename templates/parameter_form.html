@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Query Parameters - {{ query.name }}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <h1>{{ query.name }}</h1>
+    <p>{{ query.description }}</p>
+    
+    <form action="/execute/{{ index }}" method="POST">
+        {% for param in query.parameters %}
+        <div class="form-group">
+            <label for="{{ param.name }}">{{ param.name }} ({{ param.parameter_type }})</label>
+            <input type="text" id="{{ param.name }}" name="{{ param.name }}" required>
+        </div>
+        {% endfor %}
+        
+        <button type="submit" class="button">Execute Query</button>
+        <a href="/" class="button secondary">Back to Menu</a>
+    </form>
+</body>
+</html>
+
